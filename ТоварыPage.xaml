@@ -1,0 +1,96 @@
+﻿<Page x:Class="demoExam.ТоварыPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:demoExam"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ТоварыPage"
+      Loaded="Page_Loaded">
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Grid Grid.Row="0" Background="#F4E8D3">
+            <TextBlock Text="Список товаров" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="16,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0">
+                <Button Content="Добавить" Width="110" Height="34" Background="#67BA80" Foreground="White" BorderThickness="0" x:Name="BtnAdd" Click="BtnAdd_Click" Margin="0,0,8,0"/>
+                <Button Content="Удалить" Width="110" Height="34" Background="#E0E0E0" BorderThickness="0" x:Name="BtnDelete" Click="BtnDelete_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Поиск, фильтр, сортировка -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="40" VerticalAlignment="Top" Margin="10,10,10,0">
+            <TextBox x:Name="SearchBox" Width="220" Height="34" Padding="8,6" TextChanged="SearchBox_TextChanged"/>
+            <ComboBox x:Name="FilterCombo" Width="180" Height="34" Margin="8,0,0,0" SelectionChanged="FilterCombo_Changed"/>
+            <ComboBox x:Name="SortCombo" Width="180" Height="34" Margin="8,0,0,0" SelectionChanged="SortCombo_Changed">
+                <ComboBoxItem Content="Без сортировки"/>
+                <ComboBoxItem Content="По возрастанию"/>
+                <ComboBoxItem Content="По убыванию"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Таблица -->
+        <ListView x:Name="ProductsList" Grid.Row="1" Margin="10,55,10,10" MouseDoubleClick="Grid_DoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="CardBorder" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="White"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding НетНаСкладе}" Value="True">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding БольшаяСкидка}" Value="True">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+
+                            <!-- Фото -->
+                            <Image Grid.Column="0" Width="100" Height="70" Stretch="Uniform" Source="{Binding ПутьФото}"/>
+
+                            <!-- Информация -->
+                            <StackPanel Grid.Column="1"
+                                Margin="10,0,0,0">
+                                <TextBlock Text="{Binding Наименования_товаров.Наименование_товара}" FontWeight="Bold" FontSize="16"/>
+                                <TextBlock Text="{Binding Категории_товаров.Категория_товара, StringFormat=Категория товара: {0}}"/>
+                                <TextBlock Text="{Binding Описание_товара, StringFormat=Описание товара: {0}}"/>
+                                <TextBlock Text="{Binding Производители.Производитель, StringFormat=Производитель: {0}}"/>
+                                <TextBlock Text="{Binding Поставщики.Поставщик, StringFormat=Поставщик: {0}}"/>
+                                <TextBlock Text="{Binding Единица_измерения, StringFormat=Единица измерения: {0}}"/>
+                                <TextBlock Text="{Binding Кол_во_на_складе, StringFormat=Количество на складе: {0}}"/>
+
+                                <!-- Старая цена и со скидкой -->
+                                <TextBlock Text="{Binding Цена, StringFormat=Старая цена: {0}}" Foreground="Red" TextDecorations="Strikethrough"/>
+                                <TextBlock Text="{Binding ЦенаСоСкидкой, StringFormat=Новая цена: {0:F2}}" FontWeight="Bold"/>
+                            </StackPanel>
+                            
+                            <!-- Скидка -->
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="Green" Text="{Binding Действующая_скидка, StringFormat={}{0}%}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

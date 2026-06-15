@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24a67710110e4e56bf5ae2a774ba1adb" Name="Diagram1" ZoomLevel="225">
+        <EntityTypeShape EntityType="demoExamModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Заказы" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Категории_товаров" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Корзина" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Наименования_товаров" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Пользователи" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Поставщики" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Производители" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Пункты_выдачи" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Роли_пользователей" Width="1.5" PointX="1.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Статусы_заказов" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="demoExamModel.Товары" Width="1.875" PointX="2.875" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="demoExamModel.FK_Заказы_Пользователи" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Заказы_Пункты_выдачи" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Заказы_Статусы_заказов" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Корзина_Заказы" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Товары_Категории_товаров" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Корзина_Товары" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Товары_Наименования_товаров" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Пользователи_Роли_пользователей" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Товары_Поставщики" ManuallyRouted="false" />
+        <AssociationConnector Association="demoExamModel.FK_Товары_Производители" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
